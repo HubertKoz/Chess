@@ -48,11 +48,8 @@ def update():
     text = font.render('Black', True, (0, 0, 0))
     display.blit(text, black.pos - np.array([0, globals.HEIGHT/9]) - np.array((text.get_width(), text.get_height()))/2)
     black.draw(display)
-    ###DRAWING INFO###
-    if globals.PAUSE:
-        font = pygame.font.SysFont("Arial", int(globals.PROPERTIES['boardSize'][1]/5))
-        text = font.render('PAUSED', True, (255, 255, 255))
-        display.blit(text, (np.array([globals.WIDTH, globals.HEIGHT])/2 - np.array((text.get_width(), text.get_height()))/2))
+    ###INFO###
+    info(display)
     ###FRAME UPDATE###
     pygame.display.flip()
     pygame.display.update()
@@ -67,6 +64,20 @@ def check():
     if black.clickCheck():
         globals.BLACK = black.button.text
 
+def info(surface):
+    ###DRAWING INFO###
+    if globals.PAUSE:
+        font = pygame.font.SysFont("Arial", int(globals.PROPERTIES['boardSize'][1]/5))
+        text = font.render('PAUSED', True, (255, 255, 255))
+        surface.blit(text, (np.array([globals.WIDTH, globals.HEIGHT])/2 - np.array((text.get_width(), text.get_height()))/2))
+    elif globals.MOVING:
+        font = pygame.font.SysFont("Arial", int(globals.PROPERTIES['boardSize'][1]/5))
+        text = font.render('MOVING...', True, (255, 255, 255))
+        surface.blit(text, (np.array([globals.WIDTH, globals.HEIGHT])/2 - np.array((text.get_width(), text.get_height()))/2))
+    elif globals.CHECKMATE:
+        font = pygame.font.SysFont("Arial", int(globals.PROPERTIES['boardSize'][1]/5))
+        text = font.render('CHECKMATE...', True, (255, 255, 255))
+        surface.blit(text, (np.array([globals.WIDTH, globals.HEIGHT])/2 - np.array((text.get_width(), text.get_height()))/2))
 
 ###FIELD CENTER POSITION CALCULATION FUNCTION###
 def calcFields(pos):

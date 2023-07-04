@@ -16,7 +16,7 @@ class GameState():
         pieceMoved = globals.BOARD[startRow][startCol]
         pieceCaptured = globals.BOARD[endRow][endCol]
         ###TEST IF LEGAL###
-        if move.isLegal() and not move.check():
+        if move.isLegal() and not move.doesnt_end_with_check():
             # Update the board with the move
             globals.BOARD[startRow][startCol] = ''
             globals.BOARD[endRow][endCol] = pieceMoved
@@ -49,22 +49,17 @@ class Move():
 
     filesToCols = {"a": 0, "b" : 1, "c":2, "d":3, "e":4, "f":5, "g":6, "h":7}
     colsToFiles = { v: k for k, v in filesToCols.items()}
-    def __init__(self, startSq, endSq, board):
+    def __init__(self, startSq, endSq, board = None):
         self.startRow = int(startSq[0])
         self.startCol = int(startSq[1])
         self.endRow = int(endSq[0])
         self.endCol = int(endSq[1])
-        self.board = board
+        if board is not None:
+            self.board = board
+        else:
+            self.board = globals.BOARD
         self.pieceMoved = self.board[self.startRow][self.startCol]
         self.pieceCaptured = self.board[self.endRow][self.endCol]
-        #print(self.colsToFiles[self.startCol], self.rowstoRanks[self.startRow], self.colsToFiles[self.endCol], self.rowstoRanks[self.endRow])
-    
-    def getchessNotation(self):
-        #real chess notation
-        return self.getRankFile(self.startRow, self.startCol) + self.getRankFile(self.endRow, self.endCol)
-    
-    def getRankFile(self, r, c ):
-        return self.colsToFiles[c] +self.rowstoRanks[r]
     
     def isLegal(self):
         ###CANT BEAT YOUR OWN###
@@ -127,7 +122,7 @@ class Move():
         ###ELSE###
         return False
     
-    def check(self):
+    def doesnt_end_with_check(self):
         board = copy.deepcopy(self.board)
         board[self.endRow][self.endCol] = board[self.startRow][self.startCol]
         board[self.startRow][self.startCol] = ''

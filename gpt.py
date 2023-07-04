@@ -24,6 +24,7 @@ def move():
     matches = []
     while matches==[]:
         response = askGPT(system, user, asistant).lower()
+        print(response)
         matches = re.findall(rx, response)
     for i, letter in enumerate('abcdefgh'):
         if matches[0][0] == letter:

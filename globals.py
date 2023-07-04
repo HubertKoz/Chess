@@ -3,6 +3,7 @@ import numpy as np
 ###GAMESTATE###
 RUNNING = True
 PAUSE = False
+MOVING = False
 CHECKMATE = False
 STARTFEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'
 BOARD = []
@@ -13,7 +14,7 @@ BLACK = 'Manual'
 ALGORITHMDEPTH = 1
 ###DISPLAY###
 WIDTH, HEIGHT = 800, 400
-SHOWFIELDNAMES = True
+SHOWFIELDNAMES = False
 PROPERTIES = {
     'boardSize': np.array([300, 300]),
     'frameSize': 5
