@@ -30,3 +30,4 @@ def move(event):
                 playerClicks = [] #clear player click
             else:
                 return playerClicks
+    return [None, None]

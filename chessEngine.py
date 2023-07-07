@@ -1,7 +1,21 @@
 import globals
 import copy
 
-#Chessboard 
+gs = None
+
+def move(s, e):
+    global gs
+    if gs == None:
+        gs = GameState()
+    move = Move(s, e)
+    gs.makeMove(move)
+
+def undoMove():
+    global gs
+    if gs == None:
+        gs = GameState()
+    gs.undoMove()
+    
 #this class is responsible for current state of the chess game and valid moves
 #ChessEngine
 class GameState():
@@ -120,6 +134,22 @@ class Move():
         if self.pieceMoved.lower() == 'k' and (abs(self.startCol - self.endCol) == 1 or abs(self.startRow - self.endRow) ==1) and abs(self.startCol - self.endCol) + abs(self.startRow - self.endRow) <=2:
             return True
         ###ELSE###
+        return False
+    
+    def pawn_move(self):
+        ###PAWN###
+        ###NON BEATING###
+        if self.pieceMoved.lower() == 'p' and self.startCol == self.endCol and self.pieceCaptured =='':
+            if self.pieceMoved == 'P' and ((self.startRow == 6 and self.startRow - self.endRow == 2) or self.startRow - self.endRow == 1):
+                return True
+            elif self.pieceMoved == 'p' and ((self.startRow == 1 and self.startRow - self.endRow == -2) or self.startRow - self.endRow == -1):
+                return True
+        ###BEATING###
+        if self.pieceMoved.lower() == 'p' and abs(self.startCol - self.endCol) == 1 and self.pieceCaptured !='':
+            if self.pieceMoved == 'P' and self.startRow - self.endRow == 1:
+                return True
+            elif self.pieceMoved == 'p' and self.startRow - self.endRow == -1:
+                return True
         return False
     
     def doesnt_end_with_check(self):

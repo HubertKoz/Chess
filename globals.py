@@ -8,10 +8,10 @@ CHECKMATE = False
 STARTFEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'
 BOARD = []
 CONTROLS = ['Manual', 'GPT', 'Algorithm', 'Network']
-TURN = 0
+TURN = 0 ###even - white's move, odd - black's
 WHITE = 'Manual'
 BLACK = 'Manual'
-ALGORITHMDEPTH = 1
+ALGORITHMDEPTH = 2
 ###DISPLAY###
 WIDTH, HEIGHT = 800, 400
 SHOWFIELDNAMES = False
