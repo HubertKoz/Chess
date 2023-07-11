@@ -29,5 +29,6 @@ def move(event):
                 sqSelected = () #deselect
                 playerClicks = [] #clear player click
             else:
+                print(playerClicks)
                 return playerClicks
     return [None, None]
