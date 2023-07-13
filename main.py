@@ -2,8 +2,7 @@ import pygame
 from pygame.locals import *
 import globals
 import chessGraphics
-#import chessEngine as ce
-import chessEngine2 as ce
+import chessEngine as ce
 import utilities
 import manual
 import gpt
