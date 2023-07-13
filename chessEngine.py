@@ -1,6 +1,6 @@
 import globals
 import copy
-
+ 
 gs = None
 
 def move(s, e):
