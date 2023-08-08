@@ -4,7 +4,7 @@ import utilities
 import re
 
 def askGPT(system, user, assistant):
-    openai.api_key = "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"
+    openai.api_key = "###"
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "system", "content": system}, {"role": "user", "content" : user}, {"role": "assistant", "content" : assistant}]
